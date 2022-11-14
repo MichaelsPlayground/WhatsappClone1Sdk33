@@ -8,7 +8,7 @@ with Android 12 and Android 8.
 
 You need to setup your Firebase service and download your own google-services.json 
 
-For Authentication use Email+Password and Google
+* For Authentication use Email+Password and Google
 
 In Firebase console use project **SimpleChat** (simplechat-6671c)
 
