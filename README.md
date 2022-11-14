@@ -12,11 +12,9 @@ For Authentication use Email+Password and Google
 
 In Firebase console use project **SimpleChat** (simplechat-6671c)
 
-For Authentication use Email+Password
+* For Authentication use Email+Password
 
-For Realtime Database use: 
-
-For Realtime Database use this rule:
+*For Realtime Database use this rule:
 ```plaintext
 {
   "rules": {
