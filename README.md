@@ -14,7 +14,7 @@ In Firebase console use project **SimpleChat** (simplechat-6671c)
 
 * For Authentication use Email+Password
 
-*For Realtime Database use this rule:
+* For Realtime Database use this rule:
 ```plaintext
 {
   "rules": {
@@ -78,7 +78,7 @@ In Firebase console use project **SimpleChat** (simplechat-6671c)
 }
 ```
 
-For storage use this rule:
+* For storage use this rule:
 ```plaintext
 rules_version = '2';
 service firebase.storage {
