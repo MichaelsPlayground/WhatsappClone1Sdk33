@@ -58,11 +58,14 @@ public class FindFriendsActivity extends AppCompatActivity {
         FirebaseRecyclerAdapter<Contacts,FindFriendsViewHolder> adapter=
                 new FirebaseRecyclerAdapter<Contacts, FindFriendsViewHolder>(options) {
                     @Override
-                    protected void onBindViewHolder(@NonNull FindFriendsViewHolder holder, final int position, @NonNull Contacts model) {
+                    // there is a lint error so I changed the code
+                    // protected void onBindViewHolder(@NonNull FindFriendsViewHolder holder, final int position, @NonNull Contacts model) {
+                    protected void onBindViewHolder(@NonNull FindFriendsViewHolder holder, final int positionOld, @NonNull Contacts model) {
                         holder.username.setText(model.getName());
                         holder.userstatus.setText(model.getStatus());
                         Picasso.get().load(model.getImage()).placeholder(R.drawable.profile_image).into(holder.profile);
-
+                        // new
+                        final int position = holder.getBindingAdapterPosition();
                         holder.itemView.setOnClickListener(new View.OnClickListener() {
                             @Override
                             public void onClick(View v) {

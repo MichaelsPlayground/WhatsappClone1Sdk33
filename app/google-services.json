@@ -1,43 +1,42 @@
 {
   "project_info": {
-    "project_number": "714271758587",
-    "firebase_url": "https://chatapp-9849c.firebaseio.com",
-    "project_id": "chatapp-9849c",
-    "storage_bucket": "chatapp-9849c.appspot.com"
+    "project_number": "938595332712",
+    "firebase_url": "https://simplechat-6671c-default-rtdb.firebaseio.com",
+    "project_id": "simplechat-6671c",
+    "storage_bucket": "simplechat-6671c.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:714271758587:android:6701ee4ed6b9045353b85e",
+        "mobilesdk_app_id": "1:938595332712:android:3dc802959ff7bab8b681dd",
         "android_client_info": {
           "package_name": "com.example.chatapp"
         }
       },
       "oauth_client": [
         {
-          "client_id": "714271758587-fsue9f805hhp54bkpa3h5jhgvbovr139.apps.googleusercontent.com",
-          "client_type": 1,
-          "android_info": {
-            "package_name": "com.example.chatapp",
-            "certificate_hash": "e32bb730f2d809c0e057fde2ddf3f673c53ebd99"
-          }
-        },
-        {
-          "client_id": "714271758587-fufk606erng2a5rt4gl7tem5t79pmdou.apps.googleusercontent.com",
+          "client_id": "938595332712-1iknefgv6tm8b7kugrlclidr46isfsiq.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyANSBSocy5TEWQjiefP7cWwAqgYkmJwUN8"
+          "current_key": "AIzaSyDXg20AT1zSAG4uWmP4rC5wRKUeR4QWGVI"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "714271758587-fufk606erng2a5rt4gl7tem5t79pmdou.apps.googleusercontent.com",
+              "client_id": "938595332712-1iknefgv6tm8b7kugrlclidr46isfsiq.apps.googleusercontent.com",
               "client_type": 3
+            },
+            {
+              "client_id": "938595332712-pcba2ufqk66l6aeqal8tmrou0lnt1u7j.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "de.fluttercrypto1.simpleflutterchatapp"
+              }
             }
           ]
         }

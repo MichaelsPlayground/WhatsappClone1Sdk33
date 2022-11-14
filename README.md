@@ -1,6 +1,97 @@
 # ChatApp
 It is an open-source app with real-time messaging using Firebase and Node Js.
 
+Original source: https://github.com/krishkamani/ChatApp
+
+Note: the code is updated to modern Android version (SDK 33), tested on real devices 
+with Android 12 and Android 8.
+
+You need to setup your Firebase service and download your own google-services.json 
+
+For Authentication use Email+Password and Google
+
+In Firebase console use project **SimpleChat** (simplechat-6671c)
+
+For Authentication use Email+Password
+
+For Realtime Database use: 
+
+For Realtime Database use this rule:
+```plaintext
+{
+  "rules": {
+    // User profiles are only readable/writable by the user who owns it
+    "users": {
+      "$UID": {
+        ".read": "auth.uid == $UID",
+        ".write": "auth.uid == $UID"
+      }
+    },
+
+    // Posts can be read by anyone but only written by logged-in users.
+    "posts": {
+      ".read": true,
+      ".write": "auth.uid != null",
+
+      "$POSTID": {
+        // UID must match logged in user and is fixed once set
+        "uid": {
+          ".validate": "(data.exists() && data.val() == newData.val()) || newData.val() == auth.uid"
+        },
+
+        // User can only update own stars
+        "stars": {
+          "$UID": {
+              ".validate": "auth.uid == $UID"
+          }
+        }
+      }
+    },
+
+    // User posts can be read by anyone but only written by the user that owns it,
+    // and with a matching UID
+    "user-posts": {
+      ".read": true,
+
+      "$UID": {
+        "$POSTID": {
+          ".write": "auth.uid == $UID",
+        	".validate": "data.exists() || newData.child('uid').val() == auth.uid"
+        }
+      }
+    },
+
+
+    // Comments can be read by anyone but only written by a logged in user
+    "post-comments": {
+      ".read": true,
+      ".write": "auth.uid != null",
+
+      "$POSTID": {
+        "$COMMENTID": {
+          // UID must match logged in user and is fixed once set
+          "uid": {
+              ".validate": "(data.exists() && data.val() == newData.val()) || newData.val() == auth.uid"
+          }
+        }
+      }
+    }
+  }
+}
+```
+
+For storage use this rule:
+```plaintext
+rules_version = '2';
+service firebase.storage {
+  match /b/{bucket}/o {
+    match /{allPaths=**} {
+      allow read, write: if true;
+    }
+  }
+}
+```
+
 #### Note: I am working on a new version Android Studio 3.6
 
 Don't Forget to <a href="https://www.youtube.com/channel/UCV8auqEr_jx606MqyeyIPpw?sub_confirmation=1">Subscribe</a> My Channel , like video and share to your friends. If you want to learn any new things then comment over that. We will make new video on that As soon As Possible.

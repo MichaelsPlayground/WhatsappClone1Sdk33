@@ -49,8 +49,11 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.MessageV
     }
 
     @Override
-    public void onBindViewHolder(@NonNull final MessageViewHolder holder, final int position) {
+    // there is a lint error so I changed the code
+    // public void onBindViewHolder(@NonNull final MessageViewHolder holder, final int position) {
+    public void onBindViewHolder(@NonNull final MessageViewHolder holder, final int positionOld) {
         String messagesenderid=mAuth.getCurrentUser().getUid();
+        final int position = holder.getBindingAdapterPosition();
         final Messages messages=UserMessageList.get(position);
 
         String fromuserid=messages.getFrom();

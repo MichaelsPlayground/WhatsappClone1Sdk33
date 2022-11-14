@@ -7,6 +7,7 @@ import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -20,7 +21,8 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.iid.FirebaseInstanceId;
+import com.google.firebase.messaging.FirebaseMessaging;
+//import com.google.firebase.iid.FirebaseInstanceId;
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -31,6 +33,8 @@ public class LoginActivity extends AppCompatActivity {
     private TextView Signup,ForgotPassword;
     private ProgressDialog progressDialog;
     private DatabaseReference userRef;
+
+    private static String TAG = "LoginActivity";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -89,6 +93,39 @@ public class LoginActivity extends AppCompatActivity {
                             if(task.isSuccessful())
                             {
                                 String currentUserId=firebaseAuth.getCurrentUser().getUid();
+
+                                FirebaseMessaging.getInstance().getToken()
+                                        .addOnCompleteListener(new OnCompleteListener<String>() {
+                                            @Override
+                                            public void onComplete(@NonNull Task<String> task) {
+                                                if (!task.isSuccessful()) {
+                                                    Log.i(TAG, "Fetching FCM registration token failed", task.getException());
+                                                    return;
+                                                }
+
+                                                // Get new FCM registration token
+                                                String deviceToken = task.getResult();
+                                                userRef.child(currentUserId).child("device_token").setValue(deviceToken)
+                                                        .addOnCompleteListener(new OnCompleteListener<Void>() {
+                                                            @Override
+                                                            public void onComplete(@NonNull Task<Void> task) {
+                                                                if(task.isSuccessful())
+                                                                {
+                                                                    sendUserToMainActivity();
+                                                                    Toast.makeText(LoginActivity.this,"Logged in Successfully...",Toast.LENGTH_SHORT).show();
+                                                                }
+
+                                                            }
+                                                        });
+
+                                                // Log and toast
+                                                String msg = "token: " + deviceToken;
+                                                Log.i(TAG, msg);
+                                                //Toast.makeText(LoginActivity.this, msg, Toast.LENGTH_SHORT).show();
+                                            }
+                                        });
+
+                                /*
                                 String deviceToken= FirebaseInstanceId.getInstance().getToken();
                                 userRef.child(currentUserId).child("device_token").setValue(deviceToken)
                                         .addOnCompleteListener(new OnCompleteListener<Void>() {
@@ -102,6 +139,7 @@ public class LoginActivity extends AppCompatActivity {
 
                                             }
                                         });
+                                 */
                             }
                             else
                             {
