@@ -125,7 +125,7 @@ public class LoginActivity extends AppCompatActivity {
                                             }
                                         });
 
-                                /*
+                                /* deprecated
                                 String deviceToken= FirebaseInstanceId.getInstance().getToken();
                                 userRef.child(currentUserId).child("device_token").setValue(deviceToken)
                                         .addOnCompleteListener(new OnCompleteListener<Void>() {

@@ -14,7 +14,18 @@ In Firebase console use project **SimpleChat** (simplechat-6671c)
 
 * For Authentication use Email+Password
 
-* For Realtime Database use this rule:
+* For Realtime Database use this rule (see : https://medium.com/@juliomacr/10-firebase-realtime-database-rule-templates-d4894a118a98)
+
+```plaintext
+// Only authenticated users can access/write data
+{
+ "rules": {
+ ".read": "auth != null",
+ ".write": "auth != null"
+ }
+}
+```
+
 ```plaintext
 {
   "rules": {
@@ -74,6 +85,16 @@ In Firebase console use project **SimpleChat** (simplechat-6671c)
         }
       }
     }
+  }
+}
+```
+
+old Rule with Timeout:
+```plaintext
+{
+  "rules": {
+    ".read": "now < 1670886000000",  // 2022-12-13
+    ".write": "now < 1670886000000",  // 2022-12-13
   }
 }
 ```

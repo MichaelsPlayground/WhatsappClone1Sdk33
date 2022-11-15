@@ -184,10 +184,10 @@ public class MainActivity extends AppCompatActivity {
             sendUserToLoginActivity();
             Toast.makeText(MainActivity.this,"User logged out succuessfully...",Toast.LENGTH_SHORT).show();
         }
-       /* else if(id==R.id.main_create_group_menu)
+        else if(id==R.id.main_create_group_menu)
         {
             RequestNewGroup();
-        }*/
+        }
         return true;
     }
 

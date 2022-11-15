@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentPagerAdapter;
 
+// todo deprecated FragmentPagerAdapter
 public class TabsAccessorAdapter extends FragmentPagerAdapter {
 
     public TabsAccessorAdapter(@NonNull FragmentManager fm) {
@@ -19,17 +20,16 @@ public class TabsAccessorAdapter extends FragmentPagerAdapter {
         switch (position)
         {
             case 0:return new ChatsFragment();
-            //case 1:return new GroupsFragment();
             case 1:return new ContactsFragment();
             case 2:return new RequestsFragment();
+            case 3:return new GroupsFragment();
         }
         return null;
     }
 
     @Override
-    public int getCount() {
-        return 3;
-    }
+    //public int getCount() {return 3;}
+    public int getCount() {return 4;}
 
     @Nullable
     @Override
@@ -37,9 +37,9 @@ public class TabsAccessorAdapter extends FragmentPagerAdapter {
         switch (position)
         {
             case 0:return "Chats";
-            //case 1:return "Groups";
             case 1:return "Contacts";
             case 2:return "Requests";
+            case 3:return "Groups";
         }
         return null;
     }
